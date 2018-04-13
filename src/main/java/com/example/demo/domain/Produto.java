@@ -30,7 +30,7 @@ public class Produto implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "tb_produto_categoria", joinColumns = @JoinColumn(name = "produto_id"),
 			inverseJoinColumns = @JoinColumn(name = "categoria_id"))
-	private List<Produto> categorias = new ArrayList<>();
+	private List<Categoria> categorias = new ArrayList<>();
 
 	/**
 	 * 
@@ -94,18 +94,18 @@ public class Produto implements Serializable {
 		this.preco = preco;
 	}
 
+	
 	/**
 	 * @return the categorias
 	 */
-	public List<Produto> getCategorias() {
+	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
 	/**
-	 * @param categorias
-	 *            the categorias to set
+	 * @param categorias the categorias to set
 	 */
-	public void setCategorias(List<Produto> categorias) {
+	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
 

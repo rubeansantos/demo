@@ -8,48 +8,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+@Entity(name = "tb_estado")
+public class Estado implements Serializable {
 
-@Entity(name = "tb_produto")
-public class Produto implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
 	private String nome;
 
-	private Double preco;
-	
-	@JsonBackReference
-	@ManyToMany
-	@JoinTable(name = "tb_produto_categoria", joinColumns = @JoinColumn(name = "produto_id"),
-			inverseJoinColumns = @JoinColumn(name = "categoria_id"))
-	private List<Categoria> categorias = new ArrayList<>();
+	@OneToMany(mappedBy = "estado")
+	private List<Cidade> cidades = new ArrayList<>();
 
-	/**
-	 * 
-	 */
-	public Produto() {
+	public Estado() {
 	}
 
 	/**
 	 * @param id
 	 * @param nome
-	 * @param preco
 	 */
-	public Produto(Integer id, String nome, Double preco) {
+	public Estado(Integer id, String nome) {
+		super();
 		this.id = id;
 		this.nome = nome;
-		this.preco = preco;
 	}
 
 	/**
@@ -83,33 +69,18 @@ public class Produto implements Serializable {
 	}
 
 	/**
-	 * @return the preco
+	 * @return the cidades
 	 */
-	public Double getPreco() {
-		return preco;
+	public List<Cidade> getCidades() {
+		return cidades;
 	}
 
 	/**
-	 * @param preco
-	 *            the preco to set
+	 * @param cidades
+	 *            the cidades to set
 	 */
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
-
-	
-	/**
-	 * @return the categorias
-	 */
-	public List<Categoria> getCategorias() {
-		return categorias;
-	}
-
-	/**
-	 * @param categorias the categorias to set
-	 */
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
+	public void setCidades(List<Cidade> cidades) {
+		this.cidades = cidades;
 	}
 
 	/*
@@ -138,7 +109,7 @@ public class Produto implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Produto other = (Produto) obj;
+		Estado other = (Estado) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

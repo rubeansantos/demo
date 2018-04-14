@@ -1,55 +1,42 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+@Entity(name = "tb_cidade")
+public class Cidade implements Serializable {
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-@Entity(name = "tb_produto")
-public class Produto implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
 	private String nome;
-
-	private Double preco;
 	
-	@JsonBackReference
-	@ManyToMany
-	@JoinTable(name = "tb_produto_categoria", joinColumns = @JoinColumn(name = "produto_id"),
-			inverseJoinColumns = @JoinColumn(name = "categoria_id"))
-	private List<Categoria> categorias = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "estado_id")
+	private Estado estado;
 
-	/**
-	 * 
-	 */
-	public Produto() {
+	public Cidade() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @param id
 	 * @param nome
-	 * @param preco
+	 * @param estado
 	 */
-	public Produto(Integer id, String nome, Double preco) {
+	public Cidade(Integer id, String nome, Estado estado) {
 		this.id = id;
 		this.nome = nome;
-		this.preco = preco;
+		this.estado = estado;
 	}
 
 	/**
@@ -83,33 +70,18 @@ public class Produto implements Serializable {
 	}
 
 	/**
-	 * @return the preco
+	 * @return the estado
 	 */
-	public Double getPreco() {
-		return preco;
+	public Estado getEstado() {
+		return estado;
 	}
 
 	/**
-	 * @param preco
-	 *            the preco to set
+	 * @param estado
+	 *            the estado to set
 	 */
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
-
-	
-	/**
-	 * @return the categorias
-	 */
-	public List<Categoria> getCategorias() {
-		return categorias;
-	}
-
-	/**
-	 * @param categorias the categorias to set
-	 */
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	/*
@@ -138,7 +110,7 @@ public class Produto implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Produto other = (Produto) obj;
+		Cidade other = (Cidade) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

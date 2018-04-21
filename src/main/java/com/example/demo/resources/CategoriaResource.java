@@ -14,7 +14,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.example.demo.domain.Categoria;
 import com.example.demo.services.CategoriaService;
 
-import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -23,7 +22,7 @@ public class CategoriaResource {
 	private CategoriaService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<?> find(@PathVariable Integer id){
 		Categoria result = service.buscar(id);
 
 		return ResponseEntity.ok().body(result);

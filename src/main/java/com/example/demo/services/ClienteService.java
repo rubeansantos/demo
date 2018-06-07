@@ -16,7 +16,7 @@ import com.example.demo.domain.Cliente;
 import com.example.demo.domain.Endereco;
 import com.example.demo.domain.enums.TipoCliente;
 import com.example.demo.dto.ClienteDTO;
-import com.example.demo.dto.ClienteNewDTO;
+import com.example.demo.dto.ClienteInsertDTO;
 import com.example.demo.repositories.ClienteRepository;
 import com.example.demo.repositories.EnderecoRepository;
 import com.example.demo.services.exceptions.DataIntegrityException;
@@ -78,7 +78,7 @@ public class ClienteService {
 		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null);
 	}
 
-	public Cliente fromDTO(ClienteNewDTO objDto) {
+	public Cliente fromDTO(ClienteInsertDTO objDto) {
 		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getIdentificacao(),
 				TipoCliente.toEnum(objDto.getTipo()));
 		Cidade cid = new Cidade(objDto.getCidadeId(), null, null);

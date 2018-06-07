@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import com.example.demo.services.validation.ClienteInsert;
 
 @ClienteInsert
-public class ClienteNewDTO implements Serializable {
+public class ClienteInsertDTO implements Serializable {
 
 	/**
 	 * 
@@ -49,7 +49,7 @@ public class ClienteNewDTO implements Serializable {
 
 	private Integer cidadeId;
 
-	public ClienteNewDTO() {
+	public ClienteInsertDTO() {
 		// TODO Auto-generated constructor stub
 	}
 

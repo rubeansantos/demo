@@ -9,12 +9,12 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.domain.enums.TipoCliente;
-import com.example.demo.dto.ClienteNewDTO;
+import com.example.demo.dto.ClienteInsertDTO;
 import com.example.demo.repositories.ClienteRepository;
 import com.example.demo.resources.exception.FieldMessage;
 import com.example.demo.services.validation.util.BR;
 
-public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
+public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteInsertDTO> {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
@@ -24,7 +24,7 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 	}
 
 	@Override
-	public boolean isValid(ClienteNewDTO objDto, ConstraintValidatorContext context) {
+	public boolean isValid(ClienteInsertDTO objDto, ConstraintValidatorContext context) {
 		List<FieldMessage> list = new ArrayList<FieldMessage>();
 
 		if (objDto.getTipo().equals(TipoCliente.PESSOAFISICA.getCod()) && !BR.isValidCPF(objDto.getIdentificacao())) {
